@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 
 const app = express()
 app.use(cors())
+app.use(express.json())
 
 const PORT = process.env.PORT || 8080
 
@@ -17,9 +18,19 @@ const schemeData = mongoose.Schema({
 const userModel = mongoose.model("user", schemeData)
 
 
-app.get("/", (req, res) => {
-    res.json({ message: "Server is running curd" })
+app.get("/", async (req, res) => {
+    const data = await userModel.find({})
+    res.json({ success: true, data: data })
 })
+
+
+app.post("/create", async(req, res) => {
+    console.log(req.body)
+    const data=new userModel(req.body)
+    await data.save()
+    res.send({ success: true, message: "data saved successfully" })
+})
+
 
 mongoose.connect("mongodb://127.0.0.1:27017/curdoperations")
     .then(() => {
