@@ -8,7 +8,7 @@ app.use(express.json())
 
 const PORT = process.env.PORT || 8080
 
-//??
+//schema
 const schemeData = mongoose.Schema({
     name: String,
     email: String,
@@ -17,18 +17,39 @@ const schemeData = mongoose.Schema({
 
 const userModel = mongoose.model("user", schemeData)
 
-
+//read
 app.get("/", async (req, res) => {
     const data = await userModel.find({})
     res.json({ success: true, data: data })
 })
 
 
+//create data //save data in mongodb
 app.post("/create", async(req, res) => {
     console.log(req.body)
     const data=new userModel(req.body)
     await data.save()
-    res.send({ success: true, message: "data saved successfully" })
+
+    res.send({ success: true, message: "data saved successfully" ,data: data})
+})
+
+
+//updata data
+app.put("/update", async(req,res)=>{
+    console.log(req.body)
+    const {id,...rest} = req.body
+
+    console.log(rest)
+    const data= await userModel.updateOne({_id: id}, rest)
+    res.send({success: true, message:"data updated successfully", data: data})
+})
+
+//delete api
+app.delete("/delete", async(req,res)=>{
+    const id=req.params.id
+    console.log(id)
+    const data = await userModel.deleteOne({_id:id})
+    res.send({success: true, message:"data deleted successfully", data:data})
 })
 
 
