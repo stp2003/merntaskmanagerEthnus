@@ -1,15 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import {MdClose} from "react-icons/md"
-import {useState} from 'react'
-
+import { MdClose } from "react-icons/md"
 
 function App() {
-  const[addSectin, setAddSection]=useState(false)
-
-  const handleSubmit =(e)=>{
-    e.preventDefault
-  }
   return (
     <>
       <div className="container">
@@ -18,17 +11,17 @@ function App() {
         </button>
 
         <div className="addContainer">
-          
-          <form onSubmit={handleSubmit}>
-          <div className="close-btn"><MdClose/></div>
+
+          <form>
+            <div className="close-btn"><MdClose /></div>
             <lable htmlFor="name">Name : </lable>
-            <input type="text" id="name" name="name"/>
+            <input type="text" id="name" name="name" />
 
             <lable htmlFor="email">Email : </lable>
-            <input type="email" id="email" name="email"/>
+            <input type="email" id="email" name="email" />
 
             <lable htmlFor="mobile">Mobile : </lable>
-            <input type="number" id="mobile" name="mobile"/>
+            <input type="number" id="mobile" name="mobile" />
 
             <button className="btn">Submit</button>
 

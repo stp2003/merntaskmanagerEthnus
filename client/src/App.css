@@ -5,7 +5,8 @@
 body {
   background-color: #f5f6ff;
 }
-.container{
+
+.container {
   padding: 10px;
   /* background-color: red; */
   max-width: 700px;
@@ -13,7 +14,7 @@ body {
 
 }
 
-.btn{
+.btn {
   border: none;
   padding: 7px 15px;
   font-size: 18px;
@@ -21,12 +22,12 @@ body {
   cursor: pointer;
 }
 
-.btn-add{
+.btn-add {
   background: #194064;
   color: white;
 }
 
-.addContainer{
+.addContainer {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.2);
   left: 0;
@@ -65,7 +66,7 @@ body {
   margin-top: 20px;
 }
 
-.addContainer form .close-btn{
+.addContainer form .close-btn {
   margin-left: auto;
   font-size: 18px;
   width: 20px;
