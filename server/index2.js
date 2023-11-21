@@ -25,31 +25,50 @@ app.get("/", async (req, res) => {
 
 
 //create data //save data in mongodb
-app.post("/create", async(req, res) => {
+// http://localhost:8080/create
+/*
+{
+    name,
+    email, 
+    mobile
+}
+*/
+app.post("/create", async (req, res) => {
     console.log(req.body)
-    const data=new userModel(req.body)
+    const data = new userModel(req.body)
     await data.save()
 
-    res.send({ success: true, message: "data saved successfully" ,data: data})
+    res.send({ success: true, message: "data saved successfully", data: data })
 })
 
 
 //updata data
-app.put("/update", async(req,res)=>{
+// http://localhost:8080/update
+/*
+{
+    id:"",
+    name:"",
+    email:"", 
+    mobile:""
+}
+*/
+app.put("/update", async (req, res) => {
     console.log(req.body)
-    const {id,...rest} = req.body
+    const { id, ...rest } = req.body
 
     console.log(rest)
-    const data= await userModel.updateOne({_id: id}, rest)
-    res.send({success: true, message:"data updated successfully", data: data})
+    const data = await userModel.updateOne({ _id: id }, rest)
+    res.send({ success: true, message: "data updated successfully", data: data })
 })
 
 //delete api
-app.delete("/delete", async(req,res)=>{
-    const id=req.params.id
+// http://localhost:8080/delete/id
+
+app.delete("/delete", async (req, res) => {
+    const id = req.params.id
     console.log(id)
-    const data = await userModel.deleteOne({_id:id})
-    res.send({success: true, message:"data deleted successfully", data:data})
+    const data = await userModel.deleteOne({ _id: id })
+    res.send({ success: true, message: "data deleted successfully", data: data })
 })
 
 
